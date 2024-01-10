@@ -1,0 +1,18 @@
+<div class="checkout-column-block">
+  <div class="col-12">
+    <div class="title-container">
+      <h2>Pay with</h2>
+    </div>
+    <div class="w-100">
+      <div class="form-group">
+        {{pay_with_form.card_number(placeholder="Card number", class="form-control", id="card-number") }}
+      </div>
+      <div class="form-group">
+        {{pay_with_form.expiry(placeholder="Expiry", class="form-control", id="expiry") }}
+        {{pay_with_form.cvv(placeholder="CVV", class="form-control", id="cvv") }}
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FORM IS DISABLED IN VIEWS -->

@@ -1,0 +1,42 @@
+#delete-btn {
+  background-color: var(--warning);
+  color: var(--font-color);
+  border: none;
+  width: 18px;
+  height: 18px; 
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: 50%;
+
+  &:hover {
+    background-color: var(--color-three);
+  }
+}
+
+#cart i {
+  font-size: 1.3rem;
+}
+#cart {
+  font-size: 1px;
+}
+#continue-btn {
+  width: 160px;
+  height: 50px;
+  bottom: 0; 
+  left: 0; 
+  text-wrap: nowrap;
+  background-color: var(--font-color);
+  color: var(--white);
+  border: none;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  padding: 6px 12px;
+  
+
+  &:hover {
+    background-color: var(--color-two);
+  }
+}

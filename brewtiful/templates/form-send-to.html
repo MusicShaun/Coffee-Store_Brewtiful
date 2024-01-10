@@ -1,0 +1,43 @@
+<div class="checkout-column-block">
+  <div class="col-12">
+
+    <div class="title-container">
+      <h2>Send to</h2>
+    </div>
+
+    <div class="w-100">
+
+      <div class="form-group">
+        {{send_to_form.firstname(placeholder="First name", class="form-control", id="first-name") }}
+        {{send_to_form.surname(placeholder="Last name", class="form-control", id="last-name") }}
+      </div>
+
+      <div class="form-group">
+        {{send_to_form.street(placeholder="Street address", class="form-control", id="street-address") }}
+      </div>
+
+      <div class="form-group">
+        {{send_to_form.suburb(placeholder="Suburb", class="form-control", id="suburb") }}
+        {{send_to_form.postcode(placeholder="Postcode", class="form-control", id="postcode") }} 
+      </div>
+
+      <div class="form-group">
+      <label for="{{ send_to_form.country.id }}"></label>
+      {{ send_to_form.country(class="form-control col-4", placeholder="Country", id=send_to_form.country.id) }}
+        {{send_to_form.email(placeholder="Email", class="form-control col-8", id="email") }}
+      </div>
+
+      <div class="form-group">
+        <!-- <select class="form-control col-2" id="country-code" name="country-code">
+          <option value="">+61</option>
+          <option value=""></option>
+          {% for code in codes %}
+            <option value="{{ code }}">{{ code }}</option>
+          {% endfor %}
+        </select>   -->
+        {{send_to_form.phone(placeholder="Phone number", class="form-control col-10", id="phone-number") }}
+      </div>
+
+    </div>
+  </div>
+</div>  

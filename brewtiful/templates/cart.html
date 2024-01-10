@@ -1,0 +1,73 @@
+{% block head %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/cart.css') }}">
+  <title>Cart</title>
+{% endblock %}
+
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="navbar navbar-expand-sm justify-content-center " >
+    <div class="navbar-nav flex-row justify-content-between w-100" id="history">   
+      <div id="historyNavigator" ></div>
+    </div>
+  </div>
+
+  <div class="container mt-5 h-75" style="min-height: 50vh;">
+    {% if cart %}
+      <div class="row">      
+        <div class="col-12">
+          <h1>Cart</h1>
+    
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody id="cart-items">
+              {% for item in cart %}
+                <tr>
+                  <td>{{ item.name }} {{item.size}}</td>
+                  <td>{{ item.price }}</td>
+                  <!-- Add a number select to quantity-->
+                  <td>
+                    <input type="number" name="quantity" value="{{ item.quantity }}" min="1" max="25" class="update-input" disabled onchange="updateCartQuantity(this.form, '{{ item.name }}', this.value)">
+                  </td>
+                  <td>${{ (item.price | float) * (item.quantity | int)}}</td>
+                  <td>  
+                    <form action="{{ url_for('views.delete_from_cart', product_id=item.id) }}" method="POST">
+                      <input type="submit" value="X" id="delete-btn" >
+                    </form>
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          <div class="d-flex justify-content-end">
+            <h3>Total: <span id="total">{{cart_total}}</span></h3>
+          </div>
+    
+        </div>
+        <button class="btn  ml-auto mt-4 " id="green-btn"
+          onclick="userClicksAnchor('/checkout', 'Checkout')"
+        ><a class="w-100 h-100 d-flex justify-content-center align-items-center"  href="{{ url_for('views.checkout') }}"  >Go to payment</a> </button>
+      </div>
+
+    {% else %}
+      <h3>Your cart is empty</h3>
+    {% endif %}
+
+  </div>
+
+  <div class="container-fixed w-100  d-flex flex-grow-1" style="min-height: 100px;">
+    <button class="btn btn-success m-auto" id="continue-btn">
+      <a class="w-25 h-100 d-flex justify-content-center align-items-center text-white" href="{{ url_for('views.index') }}" onclick="userClicksAnchor('/', 'Home')">
+        Continue shopping
+      </a>
+    </button>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,145 @@
+{% block head %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}"> 
+{% endblock %} 
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <!-- Hero image and heading -->
+  <div class="jumbotron d-flex justify-content-center p-0 mb-2">
+    <div class="jumbotron-wrapper d-flex justify-content-center align-items-center w-100 text-center">
+        <img src="{{ url_for('static', filename='img/banner.webp')}}" alt="coffee beans in a bag" class="responsive-image">
+    </div>
+  </div>
+
+  <div class="navbar navbar-expand-sm justify-content-center " >
+    <div class="navbar-nav flex-row justify-content-between w-100" id="history">   
+      <div id="historyNavigator" ></div>
+    </div>
+  </div>
+
+<!-- Search Buttons -->
+<section class="d-flex justify-content-center  mb-3 w-100 ">
+  <div class="search-bar row align-items-center w-100">
+    <div class="align-items-center w-100">
+
+      <div class="search-buttons d-flex justify-content-between">
+        <button class="btn btn-outline-dark btn-lg mr-2" 
+          onclick={toggleFiltering()}>
+          <i class="fa-solid fa-filter"></i> FILTER
+        </button>
+
+        <p class="mb-0" id="filter-count"></p>
+
+        <div class="dropdown">
+          <button class="btn btn-outline-dark btn-lg dropdown-toggle sort-text" 
+            id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            SORT BY
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" >
+            <div class="dropdown-item" onclick="applySorting('A to Z')">A to Z</div>
+            <div class="dropdown-item" onclick="applySorting('Z to A')">Z to A</div>
+            <div class="dropdown-item" onclick="applySorting('Price: Low to High')">Price: Low to High</div>
+            <div class="dropdown-item" onclick="applySorting('Price: High to Low')">Price: High to Low</div>
+          </div>
+        </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- Product cards  -->
+<section class="product d-flex justify-content-center w-100 pt-xl-3 pb-xl-4" >
+  <div class="product-wrapper d-flex justify-content-center w-100">
+    <div class="product-container w-100">
+
+  {% for product in products %}
+    <a class="product-card" href={{ url_for('views.product_details', product_id=product.id) }} 
+      data-origin="{{product.is_blend}}" 
+      data-notes="{{product.notes}}" 
+      data-location="{{product.origin}}"
+      onclick="userClicksAnchor('/product/' + '{{product.id}}', '{{product.name}}')">
+      <div class="product-card__img">
+        <img class="w-100" src="{{url_for('static', filename=product.image )}}" alt="product image">
+      </div>
+      <div class="product-wrapper__card__descr p-3 w-100">
+        <p class="mb-1 price">FROM ${{ product.price | format(precision=2) }}</p> 
+        <h3>{{ product.name }}</h3>
+        <p>{{ product.aroma }}</p>
+      </div>
+    </a>
+  {% endfor %}
+
+    </div>
+  </div>
+</section>
+
+
+<!-- Filter modal -->
+<div class="fixed-top w-100 h-100 filter d-flex mr-100">
+  <div class="filter__wrapper d-flex justify-content-center align-items-center w-100 h-100">
+    <div class="filter__container w-100 h-100 p-5">
+
+      <div class="filter__container__header d-flex justify-content-between align-items-center w-100">
+        <h2 class="m-0">Filter</h2>
+        <button class="btn btn-outline-dark btn-lg " id="clear-btn" onclick={clearFiltering()}>
+          Clear
+        </button>
+      </div>
+
+      <div class="filter__container__body w-100 mt-5">
+        <div class="filter__container__body__options w-100">
+
+          <div class="filter__container__body__options__item w-100 mt-5">
+            <h4>COFFEE TYPE</h4>
+            <div class="filter__container__body__options__item__buttons d-flex w-100">
+              {% for blend in blends %}
+              <button class="btn btn-outline-dark btn-lg filter-btn"   
+                onclick="filterProducts(this, 'blend')" id="{{blend}}">
+                {{ blend }}
+              </button>
+              {% endfor %}
+            </div>
+          </div>
+
+          <div class="filter__container__body__options__item w-100 mt-5">
+            <h4>TASTE NOTES</h4>
+            <div class="filter__container__body__options__item__buttons d-flex w-100">
+              {% for taste in tastes %}
+              <button class="btn btn-outline-dark btn-lg filter-btn"   
+                onclick="filterProducts(this, 'taste')" id="{{taste}}">
+                {{ taste }}
+              </button>
+              {% endfor %}
+            </div>
+          </div>
+
+          <div class="filter__container__body__options__item w-100 mt-5">
+            <h4>ORIGIN</h4>
+            <div class="filter__container__body__options__item__buttons d-flex w-100">
+              {% for origin in origins %}
+              <button class="btn btn-outline-dark btn-lg filter-btn"   
+                onclick="filterProducts(this, 'origin')" id="{{origin}}">
+                {{ origin }}
+              </button> 
+              {% endfor %}
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- create X to move window left -->
+  <div class="filter__close mt-5">
+    <button class="btn btn-outline-dark btn-lg w-100 h-100 d-flex align-items-center" onclick={showFiltering()}>
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+  </div>
+  <div onclick="exitFilter()" id="exitFilter"></div>
+
+
+
+{% endblock %}

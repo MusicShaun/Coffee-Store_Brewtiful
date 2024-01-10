@@ -1,0 +1,70 @@
+{% block head %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/product-details.css') }}">
+  <title>{{ product.name }}: Details</title>
+  <script src="{{ url_for('static', filename='js/dumbEventListenerForProductPage.js') }}"></script>
+{% endblock %} 
+
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="navbar navbar-expand-sm justify-content-center " >
+  <div class="navbar-nav flex-row justify-content-between w-100" id="history">   
+    <div id="historyNavigator" ></div>
+  </div>
+</div>
+<section class="container mt-4 mb-5">
+
+  <div class="row">
+    <div class="col-lg-8 product-img">
+      <!-- Product Image -->
+  <img src={{url_for('static', filename=product.image )}} alt="Product Image" class="">
+    </div>
+
+    <!-- Product Information -->
+    <div class="col-lg-4 details">
+      <p class="px-2 mt-2"><strong>Price:</strong> ${{ product.price }} +</p>
+
+      <h1 class="mb-4 p-2">{{ product.name }}</h1>
+
+      <!-- Add to Cart button -->
+      <form action="{{ url_for('views.add_to_cart', product_id=product.id) }}" method="POST" id="product-form">
+
+        <!-- select size -->
+        <p class="px-2 mb-0" data-size="{{ product.size }}">Size: {{ product.size}} - ${{ product.price }}</p>
+
+        <!-- enter quantity -->
+        <p class="p-2 mb-0">Quantity</p>
+        <div class="input-group mb-3">
+          <input type="number" class="form-control text-left" value="1" placeholder="" id="quantity" disabled
+          aria-label="Example text with button addon" aria-describedby="button-addon1" onchange="calculateCost()">
+        </div>
+
+        <span id="total"></span>
+
+        <!-- add to cart button -->
+        <span id="total"></span>
+          <input type="hidden" name="quantity" id="quantity-input" value="{{ request.form.get('quantity') or 1 }}">
+          <button class="btn-secondary" type="submit" onclick="handleFormSubmit()"
+            >Add to Cart
+          </button> <!-- SHOULD I ADD A ADDED TO CART SUCCESS WINDOW -->
+      </form>
+
+      <!-- description -->
+      <p class="secondary mb-0 p-2">{{ product.description }}</p>
+
+      <div class="m-0 stamps">
+        <div>
+          {% if product.is_blend %}
+            Blend
+          {% else %}
+            Single origin
+          {% endif %}
+        </div>
+        <div>{{ product.origin}}</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
+

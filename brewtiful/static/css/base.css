@@ -1,0 +1,234 @@
+:root {
+  --background: #fff;
+  --banner: #B9732F;
+  --color-one: #343e46;
+  --color-two: #B9732F;
+  --color-three: #7dc2ae;
+  --color-four: hsl(200,31%,67%);
+  --font-color: hsl(207,15%,24%);
+  --warning: #ff7e7e;
+  --success: #26c598;
+  --p-color: hsl(207,15%,24%);
+  --font-sub-color: #dacece;
+  --white: #fff;
+  --font-size: 16px;
+  --font-checkout: 14px;
+  --nav-height: 70px;
+}
+
+#history {
+  max-width: 1300px;
+}
+#historyNavigator { /* functions in history.js*/ 
+  z-index: 1020;
+  background-color: white;
+  font-size: 1rem;
+}
+
+/* ------ ELEMENTS ------ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--background);
+}
+
+main {
+  position: relative;
+  flex: 1;
+}
+
+a {
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  color: var(--font-color) ;
+  > span {
+    color: var(--white);
+  }
+}
+
+a:active, a:link {
+  text-decoration: none;
+}
+
+h3 {
+  font-size: 22px ;
+  color: var(--font-color);
+  font-weight: 700;
+}
+
+footer {
+  height: var(--nav-height);
+  text-align: center;
+  color: var(--white);
+  background-color: var(--color-one);
+}
+
+/* ------ CLASSES ------ */
+.btn {
+  justify-content: center;
+  align-items: center; 
+  font-weight: 700;
+  cursor: pointer;
+}
+.btn-primary {
+  background-color: var(--color-one);
+  color: var(--font-color);
+}
+.btn-secondary {
+  background-color: var(--color-one);
+  color: var(--white);
+}
+#green-btn {
+  background-color: var(--color-three);
+  color: var(--white);
+  border: none;
+  border-radius: 10px;
+  width: 160px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--color-two);
+  }
+}
+
+nav {
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+.navbar {
+  height: var(--nav-height);
+  background-color: var(--white);
+  > ul {
+    height: var(--nav-height);
+    max-width: 1300px;
+    color: var(--white);
+  }
+}
+.black-bar {
+  background-color: var(--color-one);
+  height: 16px;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+}
+.nav-logo {
+  > a img {
+    width: 180px;
+    height: 100%;
+    object-fit: fill;
+    padding: 8px 0;
+  }
+}
+.nav-title {
+  height: 100%;
+  cursor: pointer;
+  font-size: 24px;
+  padding: 0 8px;
+
+  > div, a{
+    display: flex;
+    align-items: center;
+    height: 100%;
+    color: var(--color-one);
+  }
+  > div:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: block;
+    width: 0;
+    height: 2px;
+    background-color: var(--color-one);
+    transition: width 0.3s;
+  }
+    
+  > div {
+    position: relative;
+    margin-left: 1.5rem;
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: -0px;
+  }
+}
+@media screen and (max-width: 768px ) {
+  .nav-title {
+    display: none !important;
+  }
+}
+.nav-item__menu a {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2px;
+  font-size: 1.3rem;;
+  line-height: 1.5;
+}
+.nav-title__dropdown {
+  position: absolute;
+  left: 50%;
+  top: var(--nav-height);
+  transform: translate(-50%, 0);
+  height: 180px;
+  width: 200px;
+  display: none;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  z-index: 2;
+  list-style: none;
+  border-radius: 10px;
+  background-color: var(--white);
+  box-shadow: 3px 3px 3px rgba(0,0,0,0.15);
+  color: var(--font-color);
+  opacity: 0.2;
+}
+.cart-number {
+  position: absolute;
+  top: -8px;
+  left: 16px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: var(--color-three);
+  color: var(--white);
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+
+/* ------ HOVERS ------ */
+.btn-primary:hover {
+  background-color: var(--color-three);
+  color: var(--white);
+}
+.btn-secondary:hover {
+  background-color: var(--color-three);
+  color: var(--font-color);
+}
+.nav-title div:hover:after {
+  transition: all 0.2s ease-in-out;
+  width: 100%;
+}
+.our-story:hover > .nav-title__dropdown {
+  display: flex;
+  color: var(--font-color);
+  opacity: 1;
+}

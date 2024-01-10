@@ -1,0 +1,52 @@
+{% block head %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/checkout.css') }}">
+  <script defer src="{{ url_for('static', filename='js/checkout.js') }}"></script>
+  <title>Checkout</title>
+{% endblock %}
+
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="navbar navbar-expand-sm justify-content-center " >
+  <div class="navbar-nav flex-row justify-content-between w-100" id="history">   
+    <div id="historyNavigator" ></div>
+  </div>
+</div>
+
+<form  method="POST" class="container w-100 " id="checkout-container">
+  {{ send_to_form.csrf_token }}
+  
+  <div class="mt-5 checkout-column-one">
+    {% include "form-pay-with.html" %}
+    {% include "form-send-to.html" %}
+    {% include "form-review-checkout.html" %}
+  </div>
+
+  <div class="sticky-top w-25 checkout-column-two">
+
+    <div class="sticky-container__inner mt-4 ">
+      <div class="sticky-container__inner__items pb-3">
+        <div>
+          <p><strong>Items:</strong></p>
+          <p id="items"><strong>AU {{cart_total}}</strong></p>
+        </div>
+        <div>
+          <p><strong>Postage:</strong></p>
+          <p ><strong>Free</strong></p>
+        </div>
+      </div>
+
+      <div class="sticky-container__inner__total pb-2">
+        <h4>Total: </h4>
+        <h4 id="total">AU {{cart_total}}</h4>
+      </div>
+
+      <div class="sticky-container__inner__checkout pb-4">
+        {{ send_to_form.submit(class="btn  ml-auto mt-4 w-100 h-100 d-flex justify-content-center align-items-center", id="confirm-pay") }}
+      </div>
+    </div>  
+  </div>
+
+</form>
+
+{% endblock %}

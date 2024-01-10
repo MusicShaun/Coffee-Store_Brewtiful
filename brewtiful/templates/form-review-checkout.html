@@ -1,0 +1,35 @@
+<div class="checkout-column-block">
+  <div class="col-12 ">
+    
+    <div class="title-container">
+      <h2>Review items and postage</h2>
+    </div>
+
+    {% for product in user_cart %}
+    <div class="d-flex mb-4 pb-4 review-product">
+      <div class="">
+        <img src="{{ url_for('static', filename=product.image) }}" alt="product image" class="img-fluid review-img">
+      </div>
+      <div class="review-text">
+        <div class="row mb-4">
+          <div class="col-6">
+            <p>{{product.name}}</p> <!-- This all needs to be a for looop-->
+            <p><span id="price"><strong>AU {{product.price }}</strong></span></p> <!-- make currecy format-->
+            <p>Quantity: 1</p>
+          </div>
+        </div>
+        
+
+        <div class="col-10 " > <!-- <#miss the first column here.  -->
+          <p class="mb-0"><strong>Postage</strong></p>
+          <p class="mb-0"><span id="postage">Free postage</span></p>
+          <p class="mb-0">Get it by 15 - 20 Dec</p>
+          <p>Standard Parcel Delivery</p>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+
+    </div>
+  </div>
+</div>
