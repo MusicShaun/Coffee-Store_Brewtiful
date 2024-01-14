@@ -11,6 +11,8 @@ Brewtiful is a web application that allows users to order beverages online. This
   - [Contributing](#contributing)
   - [License](#license)
 
+![Website Home page image]](https://res.cloudinary.com/dyneqi48f/image/upload/v1705197511/portfolio/BREWTIFUL.webp)
+
 ## Features
 
 - Browse a selection of coffee beans.
@@ -26,7 +28,7 @@ To run Brewtiful locally, follow these steps:
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/brewtiful.git <!-- I haven't uploaded this to git. This is just an example -->
+   git clone https://github.com/MusicShaun/Coffee-Store_Brewtiful.git
 
 2. cd brewtiful
 
