@@ -6,6 +6,7 @@
   height: fit-content;
   padding:  0;
   background-color: var(--white);
+  overflow: hidden; 
 }
 .responsive-image {
   width: 100%;
@@ -96,6 +97,14 @@
   > button {
     margin-bottom: 1rem;
     margin-left: 0rem;
+  }
+}
+@media screen and (max-width: 768px) { 
+  .fa-filter {
+    display: none !important;
+  }
+  #filter-count {
+    display: none;
   }
 }
 
